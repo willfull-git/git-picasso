@@ -3,12 +3,20 @@ import React, {
   useEffect
 } from 'react';
 import ReactDOM from 'react-dom';
-import style    from './style.css';
+import style    from './day.css';
 
-function Day(){
+function Day(props){
+  function handleClick(){
+    // Log
+    console.log('[click]');
+  }
+
   return (
-    <div className={style.day}>
-    </div>
+    <div
+      onClick={handleClick}
+      className={style.day}
+      data-date={props.date}
+    > </div>
   );
 }
 

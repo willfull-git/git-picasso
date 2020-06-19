@@ -1,0 +1,15 @@
+.day {
+  height: 12px;
+  width: 12px;
+  background-color: gray;
+}
+
+/*
+.day + .day {
+  margin-top: 3px;
+}
+
+.day:nth-child(7n+1) {
+  margin-top: 0;
+}
+*/
