@@ -2,25 +2,25 @@ import React, {
   useState,
   useEffect
 } from 'react';
-import ReactDOM from 'react-dom';
 import {
   getDaysInYear
 } from 'date-fns';
-import style    from './calendar.css';
+import classes  from './calendar.css';
 import Day      from './day/Day';
 
 function Calendar(props){
-  const daysAmount = getDaysInYear(props.year);
-  const daysArray  = [];
+  const yearDays = props.yearDays;
 
-  for(let i=0; i<daysAmount; i++){
-    daysArray.push(<Day/>);
-  }
+  let yearDaysGrid = [];
+
+  yearDays.forEach(()=>{
+    yearDaysGrid.push(<Day/>);
+  })
 
   return (
-    <div className={style.calendar}>
-      <div className={style.grid}>
-        { daysArray }
+    <div>
+      <div className={classes.grid}>
+        {yearDaysGrid}
       </div>
     </div>
   );

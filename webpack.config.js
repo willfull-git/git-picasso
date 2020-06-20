@@ -22,9 +22,16 @@ module.exports = {
       },
       {
         test: /\.css$/i,
-        loaders: [
+        use: [
           "style-loader",
-          "css-loader?modules=true"
+          {
+            loader: "css-loader",
+            options: {
+              modules: {
+                localIdentName: '[name]_[local]'
+              }
+            }
+          }
         ]
       }
     ]

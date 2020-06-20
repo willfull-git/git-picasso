@@ -13,9 +13,7 @@ function Day(props){
 
   return (
     <div
-      onClick={handleClick}
       className={style.day}
-      data-date={props.date}
     > </div>
   );
 }
