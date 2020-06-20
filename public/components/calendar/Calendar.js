@@ -14,7 +14,7 @@ function Calendar(props){
   let yearDaysGrid = [];
 
   yearDays.map((v,i)=>{
-    yearDaysGrid.push(<Day date={v} key={v.toString()}/>);
+    yearDaysGrid.push(<Day date={v} key={v.toString()} addCommit={props.addCommit}/>);
   })
 
   return (
