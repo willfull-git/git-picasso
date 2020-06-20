@@ -3,7 +3,27 @@ body {
 }
 
 #root {
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
+}
+
+/*
+ * # Atom
+ */
+.commit-0 {
+  background-color: #ebedf0;
+}
+
+.commit-1 {
+  background-color: #c6e48b;
+}
+
+.commit-2 {
+  background-color: #7bc96f;
+}
+
+.commit-3 {
+  background-color: #239a3b;
+}
+
+.commit-4 {
+  background-color: #196127;
 }

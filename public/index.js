@@ -14,9 +14,9 @@ import Editor   from './components/editor/Editor'
  */
 function App(){
   return (
-    <div>
+    <React.Fragment>
       <Editor/>
-    </div>
+    </React.Fragment>
   );
 }
 

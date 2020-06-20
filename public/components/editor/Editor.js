@@ -6,11 +6,9 @@ import {
   lastDayOfYear,
   eachDayOfInterval
 } from 'date-fns';
+import classes  from './editor.css';
 import Calendar from '../calendar/Calendar';
 import Stats    from '../stats/Stats';
-
-// DATA
-// =======
 
 // EDITOR
 // =======
@@ -28,7 +26,7 @@ function Editor(){
   yearDays = eachDayOfInterval(yearInterval);
 
   return (
-    <div>
+    <div className={classes.cnt}>
       <Stats/>
       <Calendar yearDays={yearDays}/>
     </div>

@@ -18,7 +18,7 @@ function Calendar(props){
   })
 
   return (
-    <div>
+    <div className={classes.cnt}>
       <div className={classes.grid}>
         {yearDaysGrid}
       </div>
