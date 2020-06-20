@@ -6,14 +6,19 @@ import ReactDOM from 'react-dom';
 import style    from './day.css';
 
 function Day(props){
+  const
+    titleYear  = props.date.getFullYear(),
+    titleMonth = props.date.getMonth()+1,
+    titleDay   = props.date.getDate(),
+    title      = [titleYear, titleMonth, titleDay].join(':');
+
   function handleClick(){
-    // Log
-    console.log('[click]');
   }
 
   return (
     <div
       className={style.day}
+      title={title}
     > </div>
   );
 }

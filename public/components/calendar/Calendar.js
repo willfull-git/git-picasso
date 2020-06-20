@@ -13,8 +13,8 @@ function Calendar(props){
 
   let yearDaysGrid = [];
 
-  yearDays.forEach(()=>{
-    yearDaysGrid.push(<Day/>);
+  yearDays.map((v,i)=>{
+    yearDaysGrid.push(<Day date={v} key={v.toString()}/>);
   })
 
   return (
