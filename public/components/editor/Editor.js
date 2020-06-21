@@ -41,13 +41,29 @@ function Editor(){
     if(commit.level===0){
       setSketch(arr);
 
-      return
+      return;
     } 
 
     // Add Commit
     arr.push(commit);
     setSketch(arr);
   } 
+
+  // Remove Commit
+  // -----
+  function removeCommit(commit){
+    let arr = sketch.slice();
+
+    arr.find((e,i)=>{
+      if(e.id===commit.id){
+        arr.splice(i, 1);
+
+        return true;
+      }
+    });
+
+    setSketch(arr);
+  }
 
   // Get all days of year
   // -----
@@ -56,7 +72,7 @@ function Editor(){
   return (
     <div className={classes.cnt}>
       <Stats/>
-      <Calendar yearDays={yearDays} addCommit={addCommit}/>
+      <Calendar yearDays={yearDays} addCommit={addCommit} removeCommit={removeCommit}/>
     </div>
   );
 }

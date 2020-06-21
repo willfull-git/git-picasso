@@ -11,7 +11,16 @@
 			"file": "public/index.js",
 			"settings":
 			{
-				"buffer_size": 728,
+				"buffer_size": 354,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/components/editor/Editor.js",
+			"settings":
+			{
+				"buffer_size": 1186,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -20,7 +29,7 @@
 			"file": "public/components/calendar/Calendar.js",
 			"settings":
 			{
-				"buffer_size": 537,
+				"buffer_size": 540,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -29,16 +38,7 @@
 			"file": "public/components/calendar/day/Day.js",
 			"settings":
 			{
-				"buffer_size": 361,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "public/js/time.js",
-			"settings":
-			{
-				"buffer_size": 10,
+				"buffer_size": 774,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -47,7 +47,8 @@
 			"file": "public/css/style.css",
 			"settings":
 			{
-				"buffer_size": 78,
+				"buffer_size": 270,
+				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
@@ -55,7 +56,16 @@
 			"file": "public/components/calendar/calendar.css",
 			"settings":
 			{
-				"buffer_size": 265,
+				"buffer_size": 260,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/components/editor/editor.css",
+			"settings":
+			{
+				"buffer_size": 41,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -106,19 +116,24 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/willfull/Sandbox/git-picasso/public",
 		"/Users/willfull/Sandbox/git-picasso/public/components",
 		"/Users/willfull/Sandbox/git-picasso/public/components/calendar",
-		"/Users/willfull/Sandbox/git-picasso/public/components/calendar/day"
+		"/Users/willfull/Sandbox/git-picasso/public/components/calendar/day",
+		"/Users/willfull/Sandbox/git-picasso/public/components/editor",
+		"/Users/willfull/Sandbox/git-picasso/public/components/stats"
 	],
 	"file_history":
 	[
+		"/Users/willfull/Sandbox/git-picasso/public/js/time.js",
+		"/Users/willfull/Sandbox/git-picasso/webpack.config.js",
+		"/Users/willfull/Sandbox/git-picasso/public/components/Stats.js",
 		"/Users/willfull/Sandbox/git-picasso/public/index.html",
 		"/Users/willfull/Sandbox/git-picasso/public/components/calendar/day/style.css",
 		"/Users/willfull/Sandbox/git-picasso/public/css/style.css",
 		"/Users/willfull/Sandbox/git-picasso/public/components/calendar/style.css",
 		"/Users/willfull/Sandbox/git-picasso/node_modules/serve-index/public/style.css",
 		"/Users/willfull/Sandbox/git-picasso/public/components/Calendar.js",
-		"/Users/willfull/Sandbox/git-picasso/webpack.config.js",
 		"/Users/willfull/Sandbox/git-picasso/package.json",
 		"/Users/willfull/Sandbox/git-picasso/.babelrc",
 		"/Users/willfull/Sandbox/git-picasso/.babel-rc",
@@ -237,13 +252,11 @@
 		"/Users/willfull/Server/yoga/wp-content/themes/puzzle-shop/puzzle/front/dev/js/page-account.js",
 		"/Users/willfull/Server/yoga/wp-content/plugins/woocommerce/includes/wc-cart-functions.php",
 		"/Users/willfull/Server/yoga/wp-content/themes/puzzle-shop/woocommerce/checkout/form-shipping.php",
-		"/Users/willfull/Server/yoga/wp-content/themes/puzzle-shop/woocommerce/checkout/form-billing.php",
-		"/Users/willfull/Server/yoga/wp-content/themes/puzzle-shop/puzzle/front/dev/sass/_woo.sass",
-		"/Users/willfull/Server/yoga/wp-content/themes/puzzle-shop/puzzle/inc/puzzle-cpt.php"
+		"/Users/willfull/Server/yoga/wp-content/themes/puzzle-shop/woocommerce/checkout/form-billing.php"
 	],
 	"find":
 	{
-		"height": 45.0
+		"height": 31.0
 	},
 	"find_in_files":
 	{
@@ -284,15 +297,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 728,
+						"buffer_size": 354,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								310,
-								310
+								258,
+								258
 							]
 						],
 						"settings":
@@ -301,30 +314,32 @@
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 354.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "public/components/calendar/Calendar.js",
+					"file": "public/components/editor/Editor.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 537,
+						"buffer_size": 1186,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								367,
-								367
+								891,
+								891
 							]
 						],
 						"settings":
@@ -339,16 +354,16 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "public/components/calendar/day/Day.js",
+					"file": "public/components/calendar/Calendar.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 361,
+						"buffer_size": 540,
 						"regions":
 						{
 						},
@@ -361,10 +376,14 @@
 						],
 						"settings":
 						{
+							"draw_white_space": "selection",
+							"easy_motion_mode": false,
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -375,39 +394,43 @@
 				},
 				{
 					"buffer": 3,
-					"file": "public/js/time.js",
+					"file": "public/components/calendar/day/Day.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10,
+						"buffer_size": 774,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10,
-								10
+								484,
+								484
 							]
 						],
 						"settings":
 						{
+							"draw_white_space": "selection",
+							"easy_motion_mode": false,
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
 		},
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -416,15 +439,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 78,
+						"buffer_size": 270,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								61,
-								61
+								89,
+								89
 							]
 						],
 						"settings":
@@ -447,20 +470,53 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 265,
+						"buffer_size": 260,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								265,
-								265
+								4,
+								4
 							]
 						],
 						"settings":
 						{
 							"draw_white_space": "selection",
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/components/editor/editor.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 41,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								41,
+								41
+							]
+						],
+						"settings":
+						{
 							"incomplete_sync": null,
 							"remote_loading": false,
 							"synced": false,
@@ -470,7 +526,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -478,7 +534,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 67.0
+		"height": 54.0
 	},
 	"input":
 	{
@@ -526,7 +582,7 @@
 	"project": "git-picasso.sublime-project",
 	"replace":
 	{
-		"height": 86.0
+		"height": 58.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -535,6 +591,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"time.js",
+				"public/js/time.js"
+			],
+			[
+				"editor.css",
+				"components/editor/editor.css"
+			],
+			[
+				"webpack.config.js",
+				"git-picasso/webpack.config.js"
+			],
 			[
 				"calendar.css",
 				"components/calendar/calendar.css"
@@ -550,10 +618,6 @@
 			[
 				"Calendar.js",
 				"public/components/calendar/Calendar.js"
-			],
-			[
-				"webpack.config.js",
-				"webpack.config.js"
 			],
 			[
 				"index.js",
@@ -1038,14 +1102,6 @@
 			[
 				"class-wc-form-handler.php",
 				"yoga/wp-content/plugins/woocommerce/includes/class-wc-form-handler.php"
-			],
-			[
-				"class-wc-shortcode-my-account.php",
-				"yoga/wp-content/plugins/woocommerce/includes/shortcodes/class-wc-shortcode-my-account.php"
-			],
-			[
-				"wc-template-functions.php",
-				"yoga/wp-content/plugins/woocommerce/includes/wc-template-functions.php"
 			]
 		],
 		"width": 0.0
@@ -1053,9 +1109,13 @@
 	"select_project":
 	{
 		"height": 500.0,
-		"last_filter": "",
+		"last_filter": "yoga.sublime-project",
 		"selected_items":
 		[
+			[
+				"yoga.sublime-project",
+				"~/Server/yoga/wp-dev/yoga.sublime-project"
+			],
 			[
 				"strefa-shop.sublime-project",
 				"~/Server/strefa-shop/wp-dev/strefa-shop.sublime-project"
@@ -1091,8 +1151,8 @@
 	"show_minimap": false,
 	"show_open_files": false,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 333.0,
+	"side_bar_visible": false,
+	"side_bar_width": 230.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
