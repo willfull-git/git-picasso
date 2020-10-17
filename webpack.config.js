@@ -6,9 +6,10 @@ console.log('-- entry:');
 console.log(' - '+ path.resolve(__dirname, './public/index.js'));
 
 module.exports = {
-  entry: path.resolve(__dirname, './public/index.js'),
+  mode: 'development',
+  entry: path.resolve(__dirname, './src/index.js'),
   output: {
-    path: path.resolve(__dirname, './public'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js'
   },
   module: {
@@ -36,12 +37,11 @@ module.exports = {
       }
     ]
   },
-  mode: 'development',
   plugins: [
-    new HtmlWebpackPlugin({template: path.resolve(__dirname, './public/index.html')})
+    new HtmlWebpackPlugin({template: path.resolve(__dirname, './dist/index.html')})
   ],
   devServer: {
-    contentBase: path.resolve(__dirname, './public'),
+    contentBase: path.resolve(__dirname, './dist'),
     port: 1917
   }
 }
