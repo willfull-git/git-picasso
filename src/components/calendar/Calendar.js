@@ -1,20 +1,84 @@
 import React, {
   useState,
-  useEffect
+  useEffect,
+  useContext
 } from 'react';
 import {
-  getDaysInYear
+  format,
+  startOfYear,
+  lastDayOfYear,
+  eachDayOfInterval
 } from 'date-fns';
 import classes  from './calendar.css';
 import Day      from './day/Day';
+import Sketch   from '../../context/Sketch';
 
 function Calendar(props){
-  const yearDays = props.yearDays;
+  const [year,   setYear]   = useState(new Date);
+  const {sketch, setSketch} = useContext(Sketch);
+
+  let
+    yearStart    = startOfYear(year),
+    yearEnd      = lastDayOfYear(year),
+    yearInterval = {start: yearStart, end: yearEnd},
+    yearDays     = [];
+
+  // Add Commit
+  // -----
+  function addCommit(commit){
+    let arr = sketch.slice();
+
+    // Update old Commit
+    arr.find((e,i)=>{
+      if(e.id===commit.id){
+        arr.splice(i, 1);
+
+        return true;
+      }
+    });
+
+    // Remove old Commit
+    if(commit.level===0){
+      setSketch(arr);
+
+      return;
+    } 
+
+    // Add Commit
+    arr.push(commit);
+    setSketch(arr);
+  } 
+
+  // Remove Commit
+  // -----
+  function removeCommit(commit){
+    let arr = sketch.slice();
+
+    arr.find((e,i)=>{
+      if(e.id===commit.id){
+        arr.splice(i, 1);
+
+        return true;
+      }
+    });
+
+    setSketch(arr);
+  }
+
+  // Get all days of year
+  // -----
+  yearDays = eachDayOfInterval(yearInterval);
 
   let yearDaysGrid = [];
 
   yearDays.map((v,i)=>{
-    yearDaysGrid.push(<Day date={v} key={v.toString()} addCommit={props.addCommit} removeCommit={props.removeCommit}/>);
+    yearDaysGrid.push(
+      <Day
+        date={v}
+        key={v.toString()}
+        addCommit={addCommit}
+        removeCommit={removeCommit}
+      />);
   })
 
   return (

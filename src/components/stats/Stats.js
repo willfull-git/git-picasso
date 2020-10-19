@@ -5,7 +5,6 @@ import React, {
 import classes from './stats.css';
 
 function Stats(){
-  // State..
 
   return (
     <div className={classes.cnt}>
