@@ -1,22 +1,31 @@
 import React, {
   useState,
-  useEffect
+  useEffect,
+  useContext
 } from 'react';
 import classes from './stats.css';
 
+import SketchContext from '../../context/SketchContext';
+import {
+  getStartEnd,
+  getTimePeriod,
+  getWorkDays
+} from '../../utils/utilsTimeStats';
+
 function Stats(){
+  const {sketch, setSketch} = useContext(SketchContext);
 
   return (
     <div className={classes.cnt}>
       <ul className={classes.col}>
         <li className={classes.row}>
-          Start/End:
+          Start/End: {getStartEnd(sketch)}
         </li>
         <li className={classes.row}>
-          Time period:
+          Time period: {getTimePeriod(sketch)}
         </li>
         <li className={classes.row}>
-          Work days:
+          Work days: {getWorkDays(sketch)}
         </li>
       </ul>
       <ul className={classes.col}>

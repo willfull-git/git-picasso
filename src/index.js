@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import {
    SketchProvider
-} from './context/Sketch';
+} from './context/SketchContext';
 import Editor   from './components/editor/Editor'
 
 function App(){

@@ -3,15 +3,16 @@ import React, {
   useEffect,
   useContext
 } from 'react';
+import classes  from './calendar.css';
+
 import {
   format,
   startOfYear,
   lastDayOfYear,
   eachDayOfInterval
 } from 'date-fns';
-import classes  from './calendar.css';
 import Day      from './day/Day';
-import Sketch   from '../../context/Sketch';
+import Sketch   from '../../context/SketchContext';
 
 function Calendar(props){
   const [year,   setYear]   = useState(new Date);

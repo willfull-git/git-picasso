@@ -2,11 +2,10 @@ import React, {
   useState,
   useEffect
 } from 'react';
-import ReactDOM from 'react-dom';
+import classes  from './day.css';
 import {
   format
 } from 'date-fns';
-import classes  from './day.css';
 
 // DATA - Commit Levels
 const commitLevels = [0,1,2,3,4];
