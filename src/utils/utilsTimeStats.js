@@ -4,12 +4,15 @@ import {
   intervalToDuration,
   eachDayOfInterval
 } from 'date-fns';
+import {
+  sketchSort
+} from './utilsSketch';
 
-// Get - Start/End
-// ========== 
+// |---------------
+// | Get - Start/End
+// |--------------- 
 export const getStartEnd = (sketch)=>{
-  // Validation
-  // ---
+  // |--- Validation
   if(!sketch.length){
     return 'none';
   }
@@ -23,45 +26,31 @@ export const getStartEnd = (sketch)=>{
     start  = '',
     end    = '';
 
-  const sortedSketch = sketch.slice().sort((first, second)=>{
-    const
-      firstTime  = first.date.getTime(),
-      secondTime = second.date.getTime();
+  // |--- Sorting
+  const sortedSketch = sketchSort(sketch);
 
-    return firstTime - secondTime;
-  });
-
-  start = format(sortedSketch[0].date, 'yyyy.MM.dd');
-  end   = format(sortedSketch[sortedSketch.length-1].date, 'yyyy.MM.dd');
+  start  = format(sortedSketch[0].date, 'yyyy.MM.dd');
+  end    = format(sortedSketch[sortedSketch.length-1].date, 'yyyy.MM.dd');
   output = start+ ' / ' + end;
-
-  // Log
-  console.log(sortedSketch);
-  // console.log(format(sortedSketch[0].date, 'yyyy.MM.dd'));
-  // console.log(format(sortedSketch[sortedSketch.length-1].date, 'yyyy.MM.dd'));
 
   return output;
 }
 
-// Get - Time Period
-// ========== 
+// |---------------
+// | Get - Time Period
+// |--------------- 
 export const getTimePeriod = (sketch)=>{
-  // Validation
-  // ---
+  // |--- Validation
   if(!sketch || sketch.length<2) {
-    console.log(' - sketch is too short!');
+    // Log
+    // console.log(' - sketch is too short!');
 
     return sketch.length;
   }
 
-  const sortedSketch = sketch.slice().sort((first, second)=>{
-    const
-      firstTime  = first.date.getTime(),
-      secondTime = second.date.getTime();
+  // |--- Sorting
+  const sortedSketch = sketchSort(sketch);  
 
-    return firstTime - secondTime;
-  });
-  
   const output = eachDayOfInterval({
     start: sortedSketch[0].date,
     end:   sortedSketch[sortedSketch.length-1].date
@@ -70,8 +59,66 @@ export const getTimePeriod = (sketch)=>{
   return output.length;
 }
 
-// Get - Work Days
-// ========== 
+// |---------------
+// | Get - Work Days
+// |--------------- 
 export const getWorkDays = (sketch)=>{
   return sketch.length;
 }
+
+// |---------------
+// | Get - Days of Type
+// |--------------- 
+export const getDaysOfType = (sketch, type)=>{
+  // Log
+  // console.log('-- get days of type');
+
+  // |--- Validation
+  // ...
+
+  sketch = sketch.slice();
+
+  let
+    output = 0;
+
+  sketch.forEach((v)=>{
+    if(v.level===type) output+=1;
+  });
+
+  return output;
+}
+
+// |---------------
+// | Get - Chill Days
+// |--------------- 
+export const getChillDays = (sketch)=>{
+  // |--- Validation
+  if(sketch.length<2){
+    // Log
+    // console.log('-- get chill days: sketch too short');
+
+    return 0;
+  }
+
+  let
+    output = 0,
+    start  = undefined,
+    end    = undefined;
+
+  // |--- Sorting
+  const sortedSketch = sketchSort(sketch);  
+
+  start = sortedSketch[0];
+  end   = sortedSketch[sortedSketch.length-1];
+
+  // |--- Get Time Period
+  const timePeriod = eachDayOfInterval({
+    start: start.date,
+    end:   end.date
+  })
+
+  output = timePeriod.length - sketch.length;
+
+  return output;
+}
+

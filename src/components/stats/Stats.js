@@ -9,7 +9,9 @@ import SketchContext from '../../context/SketchContext';
 import {
   getStartEnd,
   getTimePeriod,
-  getWorkDays
+  getWorkDays,
+  getDaysOfType,
+  getChillDays
 } from '../../utils/utilsTimeStats';
 
 function Stats(){
@@ -30,21 +32,21 @@ function Stats(){
       </ul>
       <ul className={classes.col}>
         <li className={classes.row}>
-          Chill Days:
+          Chill Days: {getChillDays(sketch)}
         </li>
         <li className={classes.row}>
-          Light Days:
+          Light Days: {getDaysOfType(sketch, 1)}
         </li>
         <li className={classes.row}>
-          Normal Days:
+          Normal Days: {getDaysOfType(sketch, 2)}
         </li>
       </ul>
       <ul className={classes.col}>
         <li className={classes.row}>
-          Hard Days:
+          Hard Days: {getDaysOfType(sketch, 3)}
         </li>
         <li className={classes.row}>
-          Hardcore Days:
+          Hardcore Days: {getDaysOfType(sketch, 4)}
         </li>
       </ul>
       <ul className={classes.col}>
