@@ -1,18 +1,22 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import {
-   SketchProvider
-} from './context/SketchContext';
+  SketchProvider,
+  ToolCommandProvider
+} from './context';
 import 'normalize.css';
 import './styles.css';
 import Editor   from './components/editor/Editor'
 
 function App(){
   const [sketch, setSketch] = useState([]);
+  const [toolCommand, setToolCommand] = useState({flag: false, command: ''});
 
   return (
     <SketchProvider value={{sketch, setSketch}}>
-      <Editor/>
+      <ToolCommandProvider value={{toolCommand, setToolCommand}}>
+        <Editor/>
+      </ToolCommandProvider>
     </SketchProvider>
   );
 }

@@ -1,26 +1,38 @@
 import React, {
   useState,
-  useEffect
+  useEffect,
+  useContext
 } from 'react';
 import classes  from './day.css';
 import {
   format
 } from 'date-fns';
 
+import {
+  ToolCommandContext
+} from '../../../context';
+
 // DATA - Commit Levels
 const commitLevels = [0,1,2,3,4];
 
 function Day(props){
-  const [commitLevel, setCommitLevel]         = useState(0);
-  const [triggerClearAll, setTriggerClearAll] = useState(props.triggerClearAll);
+  const {toolCommand} = useContext(ToolCommandContext);
+
+  const [commitLevel, setCommitLevel] = useState(0);
+  const [toolCmdFlag, setToolCmdFlag] = useState(toolCommand.flag);
 
   const dateFormatted = format(props.date, 'yyyy.MM.dd');
 
-  // |--- Check if need to refresh 'commitLevel'
-  if(triggerClearAll!==props.triggerClearAll){
-    setCommitLevel(0);
+  // |--- Perform Tool Commands
+  if(toolCmdFlag !== toolCommand.flag){
 
-    setTriggerClearAll(props.triggerClearAll);
+    switch (toolCommand.command){
+      case 'clear-all':
+        setCommitLevel(0);
+        setToolCmdFlag(!toolCmdFlag);
+
+        break;
+    }
   }
 
   // Handler - Click

@@ -3,14 +3,21 @@ import React, {
 }   from 'react';
 import classes from './tools.css';
 
-import SketchContext from '../../context/SketchContext';
+import {
+  SketchContext,
+  ToolCommandContext
+} from '../../context';
 
 function Tools(props){
   const {sketch, setSketch} = useContext(SketchContext);
+  const {toolCommand, setToolCommand} = useContext(ToolCommandContext);
 
   const handleClearAll = ()=>{
     setSketch([]);
-    props.clearAll();
+    setToolCommand({
+      flag: !toolCommand.flag,
+      command: 'clear-all'
+    });
   }
 
   return (
