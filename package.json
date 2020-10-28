@@ -25,9 +25,10 @@
   },
   "homepage": "https://github.com/willfull-git/git-picasso#readme",
   "dependencies": {
+    "date-fns": "*",
+    "normalize.css": "^8.0.1",
     "react": "*",
-    "react-dom": "*",
-    "date-fns": "*"
+    "react-dom": "*"
   },
   "devDependencies": {
     "@babel/core": "*",

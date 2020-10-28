@@ -11,9 +11,17 @@ import {
 const commitLevels = [0,1,2,3,4];
 
 function Day(props){
-  const [commitLevel, setCommitLevel] = useState(0);
+  const [commitLevel, setCommitLevel]         = useState(0);
+  const [triggerClearAll, setTriggerClearAll] = useState(props.triggerClearAll);
 
   const dateFormatted = format(props.date, 'yyyy.MM.dd');
+
+  // |--- Check if need to refresh 'commitLevel'
+  if(triggerClearAll!==props.triggerClearAll){
+    setCommitLevel(0);
+
+    setTriggerClearAll(props.triggerClearAll);
+  }
 
   // Handler - Click
   // -----

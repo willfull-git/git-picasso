@@ -1,0 +1,12 @@
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  outline: 0;
+  cursor: pointer;
+}

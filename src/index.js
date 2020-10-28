@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import {
    SketchProvider
 } from './context/SketchContext';
+import 'normalize.css';
+import './styles.css';
 import Editor   from './components/editor/Editor'
 
 function App(){

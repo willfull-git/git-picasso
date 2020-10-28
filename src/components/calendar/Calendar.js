@@ -79,6 +79,7 @@ function Calendar(props){
         key={v.toString()}
         addCommit={addCommit}
         removeCommit={removeCommit}
+        triggerClearAll={props.triggerClearAll}
       />);
   })
 
