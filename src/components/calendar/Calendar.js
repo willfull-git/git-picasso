@@ -12,81 +12,38 @@ import {
   eachDayOfInterval
 } from 'date-fns';
 import Day      from './day/Day';
-import Sketch   from '../../context/SketchContext';
 
 function Calendar(props){
-  const [year,   setYear]   = useState(new Date);
-  const {sketch, setSketch} = useContext(Sketch);
+  const [year,   setYear]       = useState(new Date);
+  const [daysGrid, setDaysGrid] = useState();
+  const [yearDays, setYearDays] = useState( eachDayOfInterval({
+                                    start: startOfYear(year),
+                                    end:   lastDayOfYear(year)
+                                  }));
 
-  let
-    yearStart    = startOfYear(year),
-    yearEnd      = lastDayOfYear(year),
-    yearInterval = {start: yearStart, end: yearEnd},
-    yearDays     = [];
-
-  // Add Commit
+  // onMOUNT - set 'days grid'
   // -----
-  function addCommit(commit){
-    let arr = sketch.slice();
+  useEffect(()=>{
+    console.log('-- [mount effect] calendar');
 
-    // Update old Commit
-    arr.find((e,i)=>{
-      if(e.id===commit.id){
-        arr.splice(i, 1);
+    let yearDaysGridTmp = [];
 
-        return true;
-      }
+    yearDays.map((v,i)=>{
+      yearDaysGridTmp.push(
+        <Day
+          date={v}
+          key={v.toString()}
+          triggerClearAll={props.triggerClearAll}
+        />);
     });
 
-    // Remove old Commit
-    if(commit.level===0){
-      setSketch(arr);
-
-      return;
-    } 
-
-    // Add Commit
-    arr.push(commit);
-    setSketch(arr);
-  } 
-
-  // Remove Commit
-  // -----
-  function removeCommit(commit){
-    let arr = sketch.slice();
-
-    arr.find((e,i)=>{
-      if(e.id===commit.id){
-        arr.splice(i, 1);
-
-        return true;
-      }
-    });
-
-    setSketch(arr);
-  }
-
-  // Get all days of year
-  // -----
-  yearDays = eachDayOfInterval(yearInterval);
-
-  let yearDaysGrid = [];
-
-  yearDays.map((v,i)=>{
-    yearDaysGrid.push(
-      <Day
-        date={v}
-        key={v.toString()}
-        addCommit={addCommit}
-        removeCommit={removeCommit}
-        triggerClearAll={props.triggerClearAll}
-      />);
-  })
+    setDaysGrid(yearDaysGridTmp);
+  }, []);
 
   return (
     <div className={classes.cnt}>
       <div className={classes.grid}>
-        {yearDaysGrid}
+        {daysGrid}
       </div>
     </div>
   );

@@ -7,8 +7,14 @@ import classes  from './day.css';
 import {
   format
 } from 'date-fns';
+import {
+  addCommit,
+  addCommits,
+  removeCommit
+} from '../../../utils/utilsCommit.js';
 
 import {
+  SketchContext,
   ToolCommandContext
 } from '../../../context';
 
@@ -16,6 +22,7 @@ import {
 const commitLevels = [0,1,2,3,4];
 
 function Day(props){
+  const {sketch, setSketch} = useContext(SketchContext);
   const {toolCommand} = useContext(ToolCommandContext);
 
   const [commitLevel, setCommitLevel] = useState(0);
@@ -50,13 +57,18 @@ function Day(props){
       // Log
       console.log('-- [click] remove cmt');
 
-      props.removeCommit(commit);
+      removeCommit(sketch, setSketch, commit);
       level = 0;
+    } else if(e.shiftKey) {
+      // Log
+      console.log('-- [click] add cmts');
+
+      addCommits(sketch, setSketch, commit);
     } else {
       // Log
       console.log('-- [click] add cmt');
 
-      props.addCommit(commit);
+      addCommit(sketch, setSketch, commit);
     }
 
     setCommitLevel(level);

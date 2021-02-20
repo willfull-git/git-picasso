@@ -6,7 +6,7 @@ import {
 } from './context';
 import 'normalize.css';
 import './styles.css';
-import Editor   from './components/editor/Editor'
+import Editor   from './components/editor/Editor';
 
 function App(){
   const [sketch, setSketch] = useState([]);
