@@ -1,30 +1,61 @@
 import React, {
   useState,
-  useEffect
+  useEffect,
+  useContext
 } from 'react';
 import classes  from './day.css';
 import {
   format
 } from 'date-fns';
+import {
+  addCommit,
+  addCommitsRange,
+  removeCommit
+} from '../../../utils/utilsSketch.js';
+
+import {
+  SketchContext,
+  EditorCommandsContext,
+  YearDaysContext
+} from '../../../context';
+
+import {
+  performEditorCommands,
+  getEditorCommandsModel
+} from '../../../utils/utilsEditorCommands';
+
 
 // DATA - Commit Levels
 const commitLevels = [0,1,2,3,4];
 
 function Day(props){
-  const [commitLevel, setCommitLevel]         = useState(0);
-  const [triggerClearAll, setTriggerClearAll] = useState(props.triggerClearAll);
+  const {sketch, setSketch}                 = useContext(SketchContext);
+  const {editorCommands, setEditorCommands} = useContext(EditorCommandsContext);
+  const {yearDays}                          = useContext(YearDaysContext);
 
-  const dateFormatted = format(props.date, 'yyyy.MM.dd');
+  const [commitLevel, setCommitLevel] = useState(0);
+  const [ownEditorCmdFlags, setOwntEditorCmdFlags] = useState(getEditorCommandsModel());
 
-  // |--- Check if need to refresh 'commitLevel'
-  if(triggerClearAll!==props.triggerClearAll){
-    setCommitLevel(0);
+  const dateFormatted  = format(props.date, 'yyyy.MM.dd');
+  const editorCmdFlags = getEditorCommandsModel();
 
-    setTriggerClearAll(props.triggerClearAll);
+  for(let cmd in editorCommands){
+    editorCmdFlags[cmd]['flag'] = editorCommands[cmd]['flag'];
   }
 
-  // Handler - Click
-  // -----
+  // | Perform Editor Commands
+  // |----------
+  useEffect(()=>{
+    performEditorCommands(
+      editorCmdFlags, ownEditorCmdFlags,
+      editorCommands, setOwntEditorCmdFlags,
+      setCommitLevel, setSketch,
+      props.date, dateFormatted, commitLevel, sketch
+    );
+  }, [editorCommands]);
+
+  // | Handler - Click
+  // |----------
   function handleClick(e){
     let
       level  = (commitLevel+commitLevels.length+1)%commitLevels.length,
@@ -36,18 +67,22 @@ function Day(props){
 
     if(e.altKey){
       // Log
-      console.log('-- [click] remove cmt');
+      console.log('-- [day - click] remove cmt');
 
-      props.removeCommit(commit);
-      level = 0;
+      removeCommit(sketch, setSketch, commit);
+      setCommitLevel(0);
+    } else if(e.shiftKey) {
+      // Log
+      console.log('-- [day - click] add cmts range');
+
+      addCommitsRange(sketch, setSketch, commit, yearDays, editorCommands, setEditorCommands);
     } else {
       // Log
-      console.log('-- [click] add cmt');
+      console.log('-- [day - click] add cmt');
 
-      props.addCommit(commit);
+      addCommit(sketch, setSketch, commit);
+      setCommitLevel(level);
     }
-
-    setCommitLevel(level);
   }
 
   // Render
