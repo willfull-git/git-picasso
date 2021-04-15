@@ -6,23 +6,18 @@ import React, {
 import classes  from './calendar.css';
 
 import {
-  format,
-  startOfYear,
-  lastDayOfYear,
-  eachDayOfInterval
-} from 'date-fns';
+  YearDaysContext
+} from '../../context/index.js';
+
 import Day      from './day/Day';
 
 function Calendar(props){
-  const [year,   setYear]       = useState(new Date);
-  const [daysGrid, setDaysGrid] = useState();
-  const [yearDays, setYearDays] = useState( eachDayOfInterval({
-                                    start: startOfYear(year),
-                                    end:   lastDayOfYear(year)
-                                  }));
+  const {yearDays} = useContext(YearDaysContext);
 
-  // onMOUNT - set 'days grid'
-  // -----
+  const [gridDays, setGridDays] = useState([]);
+
+  // | Effect - on init
+  // |----------
   useEffect(()=>{
     console.log('-- [mount effect] calendar');
 
@@ -33,17 +28,16 @@ function Calendar(props){
         <Day
           date={v}
           key={v.toString()}
-          triggerClearAll={props.triggerClearAll}
         />);
     });
 
-    setDaysGrid(yearDaysGridTmp);
+    setGridDays(yearDaysGridTmp);
   }, []);
 
   return (
     <div className={classes.cnt}>
       <div className={classes.grid}>
-        {daysGrid}
+        {gridDays}
       </div>
     </div>
   );

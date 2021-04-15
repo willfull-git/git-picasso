@@ -1,3 +1,11 @@
+import {
+  format,
+  startOfYear,
+  lastDayOfYear,
+  eachDayOfInterval
+} from 'date-fns';
+
+
 // |---------------
 // | Sketch - Sort
 // |--------------- 
@@ -21,12 +29,9 @@ export const sketchSort = (sketch)=>{
 // |--------------- 
 export const sketchGetPrevCommit = (sketch, commit)=>{
   // Log
-  // console.log('-- sketch get prev commit');
-
+  // console.log('--| [get prev. commit]');
+  
   sketch = sketchSort(sketch);
-
-  // Log
-  console.log(sketch.length);
 
   // |--- if zero 'commits'
   if(sketch.length===0){
@@ -34,25 +39,110 @@ export const sketchGetPrevCommit = (sketch, commit)=>{
     return null;
   }
 
-  // |--- if only one 'commit'
-  if(sketch.length===1){
-    console.log(' - there is only one commit');
-    return sketch[0];
-  }
+  return sketch[sketch.length-1];
+}
 
-  // |--- normal execution
-  let prevCommit;
 
-  for(let i=0; i<sketch.length; i++){
-    if(sketch[i].date==commit.date){
-      prevCommit = sketch[i-1];
-      break;
+// |---------------
+// | Add Commit
+// |--------------- 
+export const addCommit = (sketch, setSketch, commit)=>{
+  let arr = sketch.slice();
+
+  // |--- Update old Commit
+  arr.find((e,i)=>{
+    if(e.id===commit.id){
+      arr.splice(i, 1);
+
+      return true;
     }
+  });
+
+  // |--- Remove old Commit
+  if(commit.level===0){
+    setSketch(arr);
+
+    return;
+  } 
+
+  // |--- Add Commit
+  arr.push(commit);
+  setSketch((sketch)=>{
+    return arr;
+  });
+
+  return commit;
+} 
+
+// |---------------
+// | Add Commits Range
+// |--------------- 
+export const addCommitsRange = (
+  sketch, setSketch,
+  commit, yearDays,
+  editorCommands, setEditorCommands
+)=>{
+  // Log
+  // console.log('--| [add commits range]');
+
+  let
+    prevCommit = sketchGetPrevCommit(sketch, commit),
+    newCommits = [],
+    days,
+    copyEditorCommands = Object.assign({}, editorCommands);
+
+  if(!prevCommit){
+    // Log
+    console.log('--| there is no commits yet');
+
+    return;
   }
 
-  // Log
-  console.log(' - prev cmt');
-  console.log(prevCommit);
+  days = eachDayOfInterval({
+    start: prevCommit.date,
+    end:   commit.date
+  })
 
-  return prevCommit;
+  days.forEach((v, i)=>{
+    let
+      dateFormatted = format(v, 'yyyy.MM.dd');
+      commit = {
+        id: dateFormatted,
+        date:  v,
+        level: 1
+      };
+
+    // Log
+    // console.log(' -| days');
+    // console.log(days);
+
+    newCommits.push(commit);
+  });
+
+  copyEditorCommands.addRange.flag  = !copyEditorCommands.addRange.flag;
+  copyEditorCommands.addRange.range = days;
+
+  setEditorCommands(copyEditorCommands);
+
+  return commit;
+}
+
+
+// |---------------
+// | Remove Commit
+// |--------------- 
+export const removeCommit = (sketch, setSketch, commit)=>{
+  let arr = sketch.slice();
+
+  arr.find((e,i)=>{
+    if(e.id===commit.id){
+      arr.splice(i, 1);
+
+      return true;
+    }
+  });
+
+  setSketch(arr);
+
+  return commit;
 }

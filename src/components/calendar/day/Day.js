@@ -9,41 +9,53 @@ import {
 } from 'date-fns';
 import {
   addCommit,
-  addCommits,
+  addCommitsRange,
   removeCommit
-} from '../../../utils/utilsCommit.js';
+} from '../../../utils/utilsSketch.js';
 
 import {
   SketchContext,
-  ToolCommandContext
+  EditorCommandsContext,
+  YearDaysContext
 } from '../../../context';
+
+import {
+  performEditorCommands,
+  getEditorCommandsModel
+} from '../../../utils/utilsEditorCommands';
+
 
 // DATA - Commit Levels
 const commitLevels = [0,1,2,3,4];
 
 function Day(props){
-  const {sketch, setSketch} = useContext(SketchContext);
-  const {toolCommand} = useContext(ToolCommandContext);
+  const {sketch, setSketch}                 = useContext(SketchContext);
+  const {editorCommands, setEditorCommands} = useContext(EditorCommandsContext);
+  const {yearDays}                          = useContext(YearDaysContext);
 
   const [commitLevel, setCommitLevel] = useState(0);
-  const [toolCmdFlag, setToolCmdFlag] = useState(toolCommand.flag);
+  const [ownEditorCmdFlags, setOwntEditorCmdFlags] = useState(getEditorCommandsModel());
 
-  const dateFormatted = format(props.date, 'yyyy.MM.dd');
+  const dateFormatted  = format(props.date, 'yyyy.MM.dd');
+  const editorCmdFlags = getEditorCommandsModel();
 
-  // |--- Perform Tool Commands
-  if(toolCmdFlag !== toolCommand.flag){
-
-    switch (toolCommand.command){
-      case 'clear-all':
-        setCommitLevel(0);
-        setToolCmdFlag(!toolCmdFlag);
-
-        break;
-    }
+  for(let cmd in editorCommands){
+    editorCmdFlags[cmd]['flag'] = editorCommands[cmd]['flag'];
   }
 
-  // Handler - Click
-  // -----
+  // | Perform Editor Commands
+  // |----------
+  useEffect(()=>{
+    performEditorCommands(
+      editorCmdFlags, ownEditorCmdFlags,
+      editorCommands, setOwntEditorCmdFlags,
+      setCommitLevel, setSketch,
+      props.date, dateFormatted, commitLevel, sketch
+    );
+  }, [editorCommands]);
+
+  // | Handler - Click
+  // |----------
   function handleClick(e){
     let
       level  = (commitLevel+commitLevels.length+1)%commitLevels.length,
@@ -55,23 +67,22 @@ function Day(props){
 
     if(e.altKey){
       // Log
-      console.log('-- [click] remove cmt');
+      console.log('-- [day - click] remove cmt');
 
       removeCommit(sketch, setSketch, commit);
-      level = 0;
+      setCommitLevel(0);
     } else if(e.shiftKey) {
       // Log
-      console.log('-- [click] add cmts');
+      console.log('-- [day - click] add cmts range');
 
-      addCommits(sketch, setSketch, commit);
+      addCommitsRange(sketch, setSketch, commit, yearDays, editorCommands, setEditorCommands);
     } else {
       // Log
-      console.log('-- [click] add cmt');
+      console.log('-- [day - click] add cmt');
 
       addCommit(sketch, setSketch, commit);
+      setCommitLevel(level);
     }
-
-    setCommitLevel(level);
   }
 
   // Render

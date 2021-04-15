@@ -4,20 +4,31 @@ import React, {
 import classes from './tools.css';
 
 import {
-  SketchContext,
-  ToolCommandContext
+  EditorCommandsContext
 } from '../../context';
 
+import {
+  getEditorCommandsModel
+} from '../../utils/utilsEditorCommands';
+
 function Tools(props){
-  const {sketch, setSketch} = useContext(SketchContext);
-  const {toolCommand, setToolCommand} = useContext(ToolCommandContext);
+  const {editorCommands, setEditorCommands} = useContext(EditorCommandsContext);
 
   const handleClearAll = ()=>{
-    setSketch([]);
-    setToolCommand({
-      flag: !toolCommand.flag,
-      command: 'clear-all'
-    });
+    // Log
+    console.log('--| TOOLs [clear all]');
+    console.log(editorCommands);
+    console.log( Object.assign(getEditorCommandsModel(), {
+      clearAll: {
+        flag: !editorCommands.clearAll.flag
+      }
+    }));
+
+    setEditorCommands( Object.assign(getEditorCommandsModel(), {
+      clearAll: {
+        flag: !editorCommands.clearAll.flag
+      }
+    }));
   }
 
   return (

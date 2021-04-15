@@ -8,22 +8,12 @@ import Tools    from '../tools/Tools';
 // EDITOR
 // =======
 function Editor(){
-  const [triggerClearAll, setTriggerClearAll] = useState(false);
-
-  const toolsClearAll = ()=>{
-    setTriggerClearAll(!triggerClearAll);
-  };
-
   return (
     <div className={classes.cnt}>
       <div className={classes.wrapper}>
         <Stats/>
-        <Calendar
-          triggerClearAll={triggerClearAll}
-        />
-        <Tools
-          clearAll={toolsClearAll}
-        />
+        <Calendar/>
+        <Tools/>
       </div>
     </div>
   );

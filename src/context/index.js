@@ -2,13 +2,19 @@ import SketchContext, {
   SketchProvider
 } from './SketchContext';
 
-import ToolCommandContext, {
-  ToolCommandProvider
-} from './ToolCommandContext';
+import EditorCommandsContext, {
+  EditorCommandsProvider
+} from './EditorCommandsContext';
+
+import YearDaysContext, {
+  YearDaysProvider
+} from './YearDaysContext';
 
 export {
   SketchContext,
   SketchProvider,
-  ToolCommandContext,
-  ToolCommandProvider
+  EditorCommandsContext,
+  EditorCommandsProvider,
+  YearDaysContext,
+  YearDaysProvider
 }
