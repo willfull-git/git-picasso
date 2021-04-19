@@ -1,7 +1,8 @@
 import React, {
   useState,
   useEffect,
-  useContext
+  useContext,
+  createRef
 } from 'react';
 import classes  from './day.css';
 import {
@@ -38,6 +39,8 @@ function Day(props){
 
   const dateFormatted  = format(props.date, 'yyyy.MM.dd');
   const editorCmdFlags = getEditorCommandsModel();
+
+  const refBox = createRef();
 
   for(let cmd in editorCommands){
     editorCmdFlags[cmd]['flag'] = editorCommands[cmd]['flag'];
@@ -92,6 +95,7 @@ function Day(props){
       className={classes.tile+' '+'commit-'+commitLevel}
       title={dateFormatted}
       onClick={handleClick}
+      ref={refBox}
     > </div>
   );
 }
