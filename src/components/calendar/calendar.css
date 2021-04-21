@@ -1,4 +1,5 @@
 .cnt {
+  position: relative;
 }
 
 .grid {
@@ -8,4 +9,17 @@
   column-gap: 3px;
   row-gap: 3px;
   grid-auto-flow: column;
+}
+
+.overlay {
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid skyblue;
+  background-color: rgba(135, 206, 235, .3);
+  z-index: 1;
+  visibility: hidden;
+  pointer-events: none;
 }
