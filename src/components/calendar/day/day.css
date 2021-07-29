@@ -1,8 +1,0 @@
-.tile {
-  cursor: pointer;
-}
-
-.selected {
-  border: 1px solid skyblue;
-  box-sizing: border-box;
-}
