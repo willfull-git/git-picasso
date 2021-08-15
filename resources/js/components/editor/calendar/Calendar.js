@@ -234,6 +234,24 @@ export default class Calendar extends Component {
     // console.log('--| mouse move');
     
     this.selection.handleMouseMove(event);
+
+    this.state.gridModel.forEach((day)=>{
+      if(
+        day.coords.x>this.selection.overlay.boundary.x.from
+        &&
+        day.coords.x<this.selection.overlay.boundary.x.to
+        &&
+        day.coords.y>this.selection.overlay.boundary.y.from
+        &&
+        day.coords.y<this.selection.overlay.boundary.y.to
+      ){
+        // console.log( day.ref.current );
+        // console.log(day);
+        day.ref.current.handleSelect();
+      } else if(day.ref.current.state.selected) {
+        day.ref.current.handleUnselect();
+      };
+    });
   }
 
 

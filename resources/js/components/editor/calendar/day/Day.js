@@ -74,6 +74,22 @@ export default class Day extends React.Component {
     }
   }
 
+  // | Handle - Select
+  // |----------
+  handleSelect(){
+    this.setState({
+      selected: true
+    });
+  }
+
+  // | Handle - Unselect
+  // |----------
+  handleUnselect(){
+    this.setState({
+      selected: false
+    });
+  }
+
   render(){ return (
     <div
       className={
