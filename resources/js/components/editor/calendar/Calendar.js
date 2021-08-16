@@ -245,8 +245,6 @@ export default class Calendar extends Component {
         &&
         day.coords.y<this.selection.overlay.boundary.y.to
       ){
-        // console.log( day.ref.current );
-        // console.log(day);
         day.ref.current.handleSelect();
       } else if(day.ref.current.state.selected) {
         day.ref.current.handleUnselect();

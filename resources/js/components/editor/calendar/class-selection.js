@@ -16,6 +16,7 @@ export default class {
         }
       }
     };
+    this.isActive  = false;
     this.refSelect = null;
     this.refGrid   = null;
     // this.selection.editorCommands    = props.editorCommands;
@@ -42,6 +43,8 @@ export default class {
                  .getComputedStyle(document.querySelector('.'+this.calendarClasses.cnt))
                  .getPropertyValue('padding'));
 
+    this.isActive = true;
+
     this.overlay.start = {
       y: cursorY,
       x: cursorX,
@@ -63,6 +66,8 @@ export default class {
   handleMouseUp(event){
     // Log
     console.log('--| mouse key up');
+
+    this.isActive = false;
     // console.log(this.overlayStartPoint);
     // console.log(this.overlayEndPoint);
 
@@ -92,6 +97,8 @@ export default class {
   handleMouseMove(event){
     // Log
     // console.log('--| mouse move');
+    
+    if(!this.isActive) return;
 
     let
       cursorX    = event.clientX,
