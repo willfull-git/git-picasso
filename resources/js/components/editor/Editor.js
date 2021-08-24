@@ -1,15 +1,13 @@
 import React, {
-  useState,
-  useContext
+  useState
 } from 'react';
-import classes  from './editor.module.css';
+import styles from './editor.module.css';
 
 import Calendar from './calendar/Calendar';
 import Stats    from './stats/Stats';
 import Tools    from './tools/Tools';
 
 import {
-  format,
   startOfYear,
   lastDayOfYear,
   eachDayOfInterval
@@ -19,10 +17,9 @@ import {
   getEditorCommandsModel
 } from '../../utils/utilsEditorCommands';
 
-// import Context from './context';
 import {EditorProvider} from '../../context/context-editor.js';
 
-function Editor(){
+export default ()=>{
   const [sketch, setSketch]                 = useState( [] );
   const [editorCommands, setEditorCommands] = useState( getEditorCommandsModel() );
   const [year, setYear]                     = useState( new Date );
@@ -32,8 +29,8 @@ function Editor(){
                                               }));
 
   return (
-    <div className={classes.cnt}>
-      <div className={classes.wrapper}>
+    <div className={styles.cnt}>
+      <div className={styles.wrapper}>
         <EditorProvider>
           <Stats sketch={sketch}/>
           <Calendar
@@ -52,5 +49,3 @@ function Editor(){
     </div>
   );
 }
-
-export default Editor;

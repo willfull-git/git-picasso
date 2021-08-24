@@ -3,6 +3,7 @@ import React, {
   Component
 } from 'react';
 import classes  from './calendar.module.css';
+import EditorContext from '../../../context/context-editor.js';
 
 import {
   ErrorBound
@@ -213,7 +214,13 @@ export default class Calendar extends Component {
   // |----------
   handleMouseUp(event){
     // Log
-    // console.log('--| mouse key up');
+    console.log('--| mouse key up');
+
+    this.state.gridCmps.forEach((v, i)=>{
+      if(v.ref.current.state.selected){
+        this.context[1]({'type': 'selection/add', payload: v})
+      }
+    });
 
     this.selection.handleMouseUp(event);
   }
@@ -278,3 +285,4 @@ export default class Calendar extends Component {
     </ErrorBound>
   )};
 }
+Calendar.contextType = EditorContext;

@@ -20,6 +20,8 @@ const reducer = (state, action)=>{
       return sketchAddCommit(state, action.payload);
     case 'sketch/commit-remove':
       return sketchRemoveCommit(state, action.payload);
+    case 'selection/add':
+      return selectionAdd(state, action.payload);
     default:
       return state;
   }
@@ -30,7 +32,7 @@ const reducer = (state, action)=>{
 const initState = {
   sketch: {
     commits: [],
-    stats:   {
+    stats: {
       startEnd: 'none',
       timePeriod: 0,
       workDays: 0,
@@ -42,8 +44,13 @@ const initState = {
       author: 'willfull',
       date:   'today',
       likes:  67
-    }
-  }
+    },
+  },
+  editorCommands: {
+
+  },
+  selection: [
+  ]
 }
 
 
@@ -100,6 +107,13 @@ const sketchRemoveCommit = (oldState, commit)=>{
   statsUpdate(state);
 
   return state;
+}
+
+
+const selectionAdd = (state, day)=>{
+  state.selection.push(day);
+
+  return state
 }
 
 
